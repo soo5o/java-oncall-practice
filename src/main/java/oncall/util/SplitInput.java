@@ -31,7 +31,7 @@ public class SplitInput {
             throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
     }
-    public static List<String> splitPeople(String input){ //근무자는 5<= <=35
+    public static List<String> splitPeople(String input){
         List<String> personData = Arrays.stream(input.split(DELIMITER_COMMA)).map(String::trim).toList();
         Set<String> uniqueNames = new HashSet<>();
         for(String name:personData){
