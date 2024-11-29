@@ -43,18 +43,21 @@ public class OncallController {
     private void checkWorkers(){
         while(true){
             try{
-                List<String> ww = getWeekdayWorker();
-                List<String> hw = getHolidayWorker();
-                CheckWorker.checkWorkersCount(ww, hw);
-                WeekdayWorkers wws = new WeekdayWorkers(ww);
-                HolidayWorkers hws = new HolidayWorkers(hw);
-                new OncallService(wws, hws);
+                getWorkerList();
                 return;
             }
             catch (IllegalArgumentException e){
                 outputView.printErrorMessage(e.getMessage());
             }
         }
+    }
+    private void getWorkerList(){
+        List<String> ww = getWeekdayWorker();
+        List<String> hw = getHolidayWorker();
+        CheckWorker.checkWorkersCount(ww, hw);
+        WeekdayWorkers wws = new WeekdayWorkers(ww);
+        HolidayWorkers hws = new HolidayWorkers(hw);
+        new OncallService(wws, hws);
     }
     private List<String> getWeekdayWorker(){
         outputView.printGetWeekPeople();
